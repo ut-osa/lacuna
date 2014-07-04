@@ -1,0 +1,11 @@
+If you have libgcrypt v1.5, you probably need
+CONFIG_GCRYPT_REAL_STREAM to be enabled - libgcrypt does the "smart"
+thing here and doesn't waste partial blocks.  The kernel, however,
+always does.  That is, unless we use my "pad-based" code in the
+kernel, which I have not yet put into effect in this version.
+
+Put this in config.mak (CFLAGS += -DCONFIG_GCRYPT_REAL_STREAM).  I
+should automate setting this up...
+
+You also should check config.mak to change AES-NI settings.  At the
+moment, this is only adjustable at compile time.

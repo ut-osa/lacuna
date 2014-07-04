@@ -1,0 +1,27 @@
+/home/adunn/privos-code/host/qemu-kvm-0.15.1/x86_64-softmmu/qemu-system-x86_64 -m 2048 -net nic,model=virtio -net user,net=10.0.0.0/8,dhcpstart=10.0.0.1 -redir tcp:8080:10.0.0.1:80 -redir tcp:2222:10.0.0.1:22 --snapshot -serial tcp::4444,server,nowait /home/adunn/privos-code/../ubuntu-11.10-desktop-amd64.img -priv-input type=pci-usb-bus,bus_num=00:1a.0,bind-script=/home/adunn/privos-code/utils/pci-bind.sh,unbind-script=/home/adunn/privos-code/utils/pci-unbind.sh -priv-input type=pci-usb-kbd -priv-input type=pci-usb-bus,bus_num=00:1d.0,bind-script=/home/adunn/privos-code/utils/pci-bind.sh,unbind-script=/home/adunn/privos-code/utils/pci-unbind.sh -priv-input type=pci-usb-mouse -priv-switch-bench
+setup_exit_notifier
+config_pci_usb_bus: bus = 0, device = 1a, fn = 0
+find_usb_driver_name: driver name: 'ehci_hcd'
+priv_set_kbd_enabled: 1
+config_pci_usb_bus: bus = 0, device = 1d, fn = 0
+find_usb_driver_name: driver name: 'ehci_hcd'
+priv_set_mouse_enabled: 1
+priv_connect_all
+priv_connect_all start: 6602804903700
+opts_buf: 'driver=pci-assign,host=00:1d.0,id=priv2'
+opts_buf: 'driver=pci-assign,host=00:1a.0,id=priv1'
+priv_connect_all end: 6608378534168
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger debug: 2
+priv_input_bench_trigger: 6612134553800
+priv_free_all

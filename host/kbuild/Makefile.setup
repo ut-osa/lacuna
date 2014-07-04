@@ -1,0 +1,10 @@
+CONFIG := ../linux-3.0/privos.config
+
+.PHONY: all
+
+all: .config
+	make -C ../linux-3.0 O=$(abspath .) prepare
+
+.config:
+	@echo "No config file present, taking $(CONFIG)..."
+	cp $(CONFIG) .config

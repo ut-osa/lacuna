@@ -1,0 +1,8 @@
+#!/bin/sh -e
+NAME=${1:-base.img}
+
+. `dirname $0`/environment
+${QEMU_DIR}/qemu-nbd -c ${NBD_DEVICE} ${IMAGE}
+# Without this sleep, this doesn't work!
+sleep 2
+mount ${NBD_DEVICE}p1 ${VM_DISK}

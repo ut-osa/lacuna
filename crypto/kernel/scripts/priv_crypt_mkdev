@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+dev_file=/dev/priv_crypt_ctl
+
+priv_crypt_major=`cat /proc/devices | grep priv_crypt | sed -e 's/^[ ]*\([0-9][0-9]*\).*/\1/'`
+
+# The dev file could be stale and have the wrong major number, so get
+# rid of it if it exists
+if [ -e ${dev_file} ]; then
+    rm ${dev_file}
+fi
+
+mknod ${dev_file} c ${priv_crypt_major} 0
+chown root:root ${dev_file}
+chmod 600 ${dev_file}

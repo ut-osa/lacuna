@@ -1,0 +1,10 @@
+{
+    "total_delta_t": 3.782001603895131, 
+    "qemu_delta_t": 2.2382669797003749, 
+    "hostname": "tenth-circle", 
+    "comp_mhz": 2670, 
+    "git_rev": "066cfc0", 
+    "total_delta_t_sttdev": 0.1693324512390432, 
+    "qemu_delta_t_stddev": 0.14067243264746201, 
+    "override_clean_check": true
+}

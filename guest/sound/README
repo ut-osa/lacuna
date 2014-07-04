@@ -1,0 +1,19 @@
+A simple playback tool that does:
+1.
+Generate 4 8-byte random tokens. Print out the ascii codes of these tokens,
+so it is not the raw data. like \x73\x62\x75\x78\x70\x62\x79\x75
+2.
+Write the tokens to alsa, repeatedly for 5 seconds. Then ERASE the buffers in
+the program. (The tokens only contains letters, for easily using grep).
+
+After running this program, you can dump the physical memory, and grep like:
+grep -a $(printf "\x73\x62\x75\x78\x70\x62\x79\x75") dumpfile > scanoutput
+
+As an example, the file "scanoutput_no_lacuna" contains part of the grep output,
+for a normal execution without Lacuna.
+
+Note:
+Before run this, do the following steps for both host and guest:
+ - Open the Ubuntu sound setting pannel, and choose 'hardware' to be 'analog stereo output'.
+ - Set 'output volume' to exactly '100%', to avoid re-scaling.
+ - Make sure that no other applications are playing any sound, to avoid mixing.

@@ -1,0 +1,8 @@
+MAC_ADDR=
+rand_mac()
+{
+    MAC_ADDR="52:54"
+    for i in $(seq 0 3); do
+        MAC_ADDR=${MAC_ADDR}$(printf ":%02X" $(($RANDOM % 256)))
+    done
+}

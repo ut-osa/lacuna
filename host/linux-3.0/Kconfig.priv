@@ -1,0 +1,65 @@
+menu "PrivOS options"
+
+config DEATH_SCAN
+       bool "Scan memory on death for a predetermined pattern"
+
+config PRIVOS
+	bool "Enable PrivOS"
+
+config PRIV_CRYPT
+	bool "Enable Encryption"
+	depends on PRIVOS
+
+config PRIV_SWAP
+	bool "Enable Private Swap"
+	depends on PRIVOS
+	depends on SWAP
+	depends on SLAB
+
+config PRIV_FREE_CACHE
+	bool "Enable dropping the page cache on close"
+	depends on PRIVOS
+
+config PRIV_CLEAN_KSTACK
+	bool "Enable IRQ stack cleaning"
+	depends on PRIVOS
+
+config PRIV_DEBUG
+	bool "Enable debug output"
+	depends on PRIVOS
+config PRIV_PERF
+	bool "Enable perf counters"
+
+config PRIV_INPUT
+	bool "Enable private device input"
+	depends on PRIVOS
+
+config PRIV_CRYPT
+	bool "Enable PrivOS private cryptographic channel support"
+        depends on PRIVOS
+
+config PRIV_CRYPT_MATH
+	tristate "PrivOS private cryptographic channel key exchange support"
+        depends on PRIVOS
+
+config PRIV_SYSFS
+    tristate "sysfs interface for PrivOS"
+    depends on PRIVOS
+
+config PRIV_NET
+    tristate "Enable private networking"
+    depends on PRIV_SYSFS
+
+config PRIV_NET_E1000E
+    tristate "Private intel e1000/e1000e driver"
+    depends on PRIV_NET
+
+
+config PRIV_SOUND
+    tristate "Enable private audio support"
+    depends on PRIV_SYSFS
+
+config PRIV_SOUND_HDA_INTEL
+    tristate "Private Intel hda sound driver"
+    depends on PRIV_SOUND
+endmenu

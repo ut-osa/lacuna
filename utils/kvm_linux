@@ -1,0 +1,228 @@
+#!/bin/bash -e
+# Run as root (e.g. with sudo)!
+
+. $(dirname $0)/environment
+. $(dirname $0)/net_util
+# It doesn't hurt to add the modifications in cuda_env even if private
+# GPU mode is not enabled
+cuda_env=$(dirname $0)/../cuda_env
+if [ -e "${cuda_env}" ]; then
+    . $(dirname $0)/../cuda_env 
+fi
+
+# Base option definitions and defaults
+snapshotyes="--snapshot"
+snapshotno=""
+snapshotwarn="WARNING: Not snapshotting..."
+snapshot=yes
+
+serialyes="-serial tcp::4444,server,nowait"
+serialno=""
+serial=yes
+
+graphicsyes=""
+graphicsno="-nographic"
+graphics=yes
+
+soundyes="-soundhw hda"
+soundno=""
+sound=no
+
+tapyes="-net tap,script=${UTILS_DIR}/qemu-ifup.sh,downscript=${UTILS_DIR}/qemu-ifdown.sh"
+tapno="-net user,net=10.0.0.0/8,dhcpstart=10.0.0.1"
+tap=no
+
+debugyes="-gdb tcp::6666"
+debugcmd="sed 's/path:to:vmlinux/${KERNEL_DIR//\//\\/}\/vmlinux/'
+< ${UTILS_DIR}/gdbinit.tmpl > ${CUR_DIR}/.gdbinit"
+debugno=""
+debug=no
+
+monitoryes="-monitor tcp::5555,server,nowait"
+monitorno=""
+monitor=no
+
+# Lacuna options and defaults
+priv_swapyes="${UTILS_DIR}/pfork "
+priv_swapno=""
+priv_swap=no
+
+priv_kbd=no
+priv_mouse=no
+priv_usb=no
+priv_pci=no
+priv_kbd_usbyes="-priv-input type=usb-kbd,bus_num=${USB_KBD},toggler"
+priv_kbd_usbno=""
+priv_mouse_usbyes="-priv-input type=usb-mouse,bus_num=${USB_MOUSE}"
+priv_mouse_usbno=""
+priv_kbd_pciyes="-priv-input type=pci-usb-kbd"
+priv_kbd_pcino=""
+priv_mouse_pciyes="-priv-input type=pci-usb-mouse"
+priv_mouse_pcino=""
+
+priv_net=no
+
+priv_switch_benchyes="-priv-switch-bench"
+priv_switch_benchno=""
+priv_switch_bench=no
+
+priv_soundyes="-priv-sound"
+priv_soundno=""
+priv_sound=no
+
+priv_diff=no
+
+# Main argument parsing loop
+for arg in $@; do
+    if [ "${arg#*.img}" != "${arg}" ]; then
+        IMAGE_FILE=${arg}
+    elif [ "${arg#--}" != "${arg}" ]; then
+        case "${arg%-*}" in
+            --no)
+        	eval ${arg#--no-}=no
+		warn=${arg#--no-}warn
+		if [ -n "${!warn}" ]; then
+		    echo ${!warn}
+		fi
+		;;
+	    -)
+		eval ${arg#--}="yes"
+		cmd=${arg#--}cmd
+		if [ -n "${!cmd}" ]; then
+		    eval ${!cmd}
+		fi
+		;;
+	    *)
+		echo "Bad Argument"
+		;;
+	esac
+    fi
+done
+
+if [ "x${vnc}" = "xyes" ]; then
+    graphicsyes="-vnc :0"
+fi
+
+GRAPHICS=graphics${graphics}
+SNAP=snapshot${snapshot}
+SOUND=sound${sound}
+SERIAL=serial${serial}
+TAP=tap${tap}
+DEBUG=debug${debug}
+MONITOR=monitor${monitor}
+PRIVATE=priv_swap${priv_swap}
+
+function pci_usb_bus_str()
+{
+    if [ "$1" = "" ]; then
+        # We need a parameter, so exit
+	exit 1
+    fi
+
+    echo "-priv-input type=pci-usb-bus,bus_num=$1,bind-script=${UTILS_DIR}/pci-bind.sh,unbind-script=${UTILS_DIR}/pci-unbind.sh"
+}
+
+if [ \( "x${priv_usb}" = "xyes" \) -a \( "x${priv_pci}" = "xyes" \) ]; then
+    echo "Please use only one of priv_usb or priv_pci"
+    exit 1
+fi
+
+if [ "x${priv_input_encrypt}" = "xyes" ]; then
+    priv_kbd_usbyes="${priv_kbd_usbyes},encrypt"
+    priv_mouse_usbyes="${priv_mouse_usbyes},encrypt"
+fi
+
+if [ "x${priv_usb}" = "xyes" ]; then
+    priv_kbd=priv_kbd_usb${priv_kbd}
+    priv_mouse=priv_mouse_usb${priv_mouse}
+    priv_kbd="${!priv_kbd}"
+    priv_mouse="${!priv_mouse}"
+elif [ "x${priv_pci}" = "xyes" ]; then
+    # Add USB controller PCI devices.  The logic below ensures that
+    # the devices for all activated private devices are added without
+    # duplicates.
+    priv_kbd_bus=
+    priv_mouse_bus=
+    if [ "${priv_kbd}" = "yes" ] &&
+       [ "${priv_mouse}" = "yes" ] &&
+       [ "${USB_KBD_PCI_DEV}" = "${USB_MOUSE_PCI_DEV}" ]; then
+       priv_kbd_bus=$(pci_usb_bus_str ${USB_KBD_PCI_DEV})
+    else
+       if [ "${priv_kbd}" = "yes" ]; then
+           priv_kbd_bus=$(pci_usb_bus_str ${USB_KBD_PCI_DEV})
+       fi
+       if [ "${priv_mouse}" = "yes" ]; then
+           priv_mouse_bus=$(pci_usb_bus_str ${USB_MOUSE_PCI_DEV})
+       fi
+    fi
+    priv_kbd=priv_kbd_pci${priv_kbd}
+    priv_kbd="${!priv_kbd} ${priv_kbd_bus}"
+    priv_mouse=priv_mouse_pci${priv_mouse}
+    priv_mouse="${!priv_mouse} ${priv_mouse_bus}"
+else
+    priv_kbd=
+    priv_mouse=
+fi
+priv_switch_bench=priv_switch_bench${priv_switch_bench}
+
+priv_sound=priv_sound${priv_sound}
+PRIV_INPUT="${priv_kbd} ${priv_mouse} ${!priv_sound} ${!priv_switch_bench}"
+
+QEMU=${QEMU_DIR}/x86_64-softmmu/qemu-system-x86_64
+MEM="-m 2048"
+
+NET_CARD="-net nic,model=virtio"
+NET_IF=${!TAP}
+
+# For tap, we provide a hypercall mechanism wherein a VM can make a
+# hypercall to determine which VM it is, and then can configure itself
+# accordingly, e.g., choose an IP 192.168.0.<100 + x>, where x is the
+# VM number.  A sample binary "hc_maker" that prints the hypercall
+# result is in directory guest, along with a network-manager upstart
+# script that can use it.
+if [ "${tap}" = "yes" ]; then
+    # To use this configuration mechanism, you would want to make
+    # NET_NUM configurable.
+    NET_NUM="-priv-net-num 0"
+else
+    NET_HTTP="-redir tcp:8080:10.0.0.1:80"
+    NET_SSH="-redir tcp:2222:10.0.0.1:22"
+fi
+
+if [ "${priv_net}" = "yes" ]; then
+    rand_mac
+    NET_CARD="${NET_CARD},encrypt,macaddr=${MAC_ADDR}"
+fi
+NET="${NET_CARD} ${NET_IF} ${NET_HTTP} ${NET_SSH} ${NET_NUM}"
+
+IMAGE_FILE=${IMAGE_FILE:-base.img}
+
+# We don't want to use IMAGE_NAME here because this uses NAME as it
+# was previously evaluated.  We want to use the new value of NAME.
+# However, we want to leave the environment file the way it is for use
+# by other utilities.
+IMAGE_FILE=$(readlink -f "${IMAGE_FILE}")
+
+if [ "${priv_diff}" = "yes" ]; then
+    # For private diffs mode, we need to create a separate encrypted
+    # qcow2 file of diffs
+    SNAP=snapshotno
+    # Yes, someone could redirect the temp file from under us, but
+    # that doesn't do anything in our threat model.  mktemp is merely
+    # to get new tempfile names each time (i.e. for multiple
+    # concurrent VMs)
+    QCOW2_IMAGE_FILE=$(mktemp)
+    ${QEMU_DIR}/qemu-img create -f qcow2 -o encryption,backing_file=${IMAGE_FILE} ${QCOW2_IMAGE_FILE}
+    IMAGE_FILE=${QCOW2_IMAGE_FILE}
+    PRIV_DIFF="-priv-diff"
+fi
+
+CMD="${!PRIVATE}${QEMU} ${!GRAPHICS} ${MEM} ${NET} ${!SNAP} ${!SOUND} ${!SERIAL} ${PRIV_INPUT} ${!MONITOR} ${!DEBUG} ${PRIV_DIFF} ${IMAGE_FILE}"
+echo ${CMD}
+
+# Keep the script alive even if QEMU fails to run stuff after it
+${CMD} || true
+
+if [ "${priv_diff}" = "yes" ]; then
+    rm "${IMAGE_FILE}"
+fi

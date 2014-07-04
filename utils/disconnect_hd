@@ -1,0 +1,4 @@
+#!/bin/sh -e
+. `dirname $0`/environment
+umount ${VM_DISK}
+${QEMU_DIR}/qemu-nbd -d ${NBD_DEVICE}

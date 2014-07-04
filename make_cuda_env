@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Adjust these variables
+CUDA_ROOT=/usr/local/cuda
+CUDA_SDK_ROOT=${HOME}/NVIDIA_GPU_Computing_SDK
+CUDA_PATH=/usr/local/cuda/bin
+CUDA_LD_LIBRARY_PATH=/usr/local/cuda/lib64
+
+# Don't touch anything here and below
+#####################################
+sh_env=cuda_env
+make_env=cuda_env.mak
+
+rm -f ${sh_env} ${make_env}
+cat >${sh_env} <<EOF
+export CUDA_ROOT=${CUDA_ROOT}
+export CUDA_SDK_ROOT=${CUDA_SDK_ROOT}
+export PATH=${CUDA_PATH}:\${PATH}
+export LD_LIBRARY_PATH=${CUDA_LD_LIBRARY_PATH}:\${LD_LIBRARY_PATH}
+EOF
+cat >${make_env} <<EOF
+CUDA_ROOT:=${CUDA_ROOT}
+CUDA_SDK_ROOT:=${CUDA_SDK_ROOT}
+PATH:=${CUDA_PATH}:\$(PATH)
+LD_LIBRARY_PATH:=${CUDA_LD_LIBRARY_PATH}:\$(LD_LIBRARY_PATH)
+EOF

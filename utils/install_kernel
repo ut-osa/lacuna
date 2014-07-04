@@ -1,0 +1,57 @@
+#!/bin/bash -e
+
+# Uncomment the option below to debug
+# set -x
+
+NAME="base.img"
+INSTALL_KERNEL="yes"
+INSTALL_MODULES="yes"
+
+for arg in $@
+do
+    if [ "${arg#*.img}" != "${arg}" ]
+    then
+	NAME=${arg}
+    elif [ "${arg#--}" != "${arg}" ]
+    then
+	case "${arg}" in
+	    --no-kernel)
+		INSTALL_KERNEL="no"
+		;;
+	    --kernel)
+		INSTALL_KERNEL="yes"
+		;;
+	    --no-modules)
+		INSTALL_MODULES="no"
+		;;
+	    --modules)
+		INSTALL_MODULES="yes"
+		;;
+	esac
+    fi
+done
+
+if [[ ${INSTALL_KERNEL} != yes && ${INSTALL_MODULES} != yes ]]
+then
+    echo "Not doing anything..."
+    exit
+fi
+
+. `dirname $0`/environment
+
+CURDIR=`pwd`
+
+${UTILS_DIR}/connect_hd ${NAME}
+
+cd ${KERNEL_DIR}
+if [ ${INSTALL_KERNEL} = yes ]
+then
+    make INSTALL_PATH=${VM_DISK}/boot install
+fi
+if [ ${INSTALL_MODULES} = yes ]
+then
+    make INSTALL_MOD_PATH=${VM_DISK} modules_install
+fi
+cd ${CURDIR}
+
+${UTILS_DIR}/disconnect_hd

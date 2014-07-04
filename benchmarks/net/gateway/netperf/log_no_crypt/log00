@@ -1,0 +1,24 @@
+TCP_STREAM to 192.168.0.100 packet payload size 1000
+TCP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.0.100 (192.168.0.100) port 0 AF_INET : nodelay : demo
+Recv   Send    Send                          
+Socket Socket  Message  Elapsed              
+Size   Size    Size     Time     Throughput  
+bytes  bytes   bytes    secs.    10^6bits/sec  
+
+ 87380  16384   1000    30.03     824.53   
+TCP_STREAM to 192.168.0.100 packet payload size 300
+TCP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.0.100 (192.168.0.100) port 0 AF_INET : nodelay : demo
+Recv   Send    Send                          
+Socket Socket  Message  Elapsed              
+Size   Size    Size     Time     Throughput  
+bytes  bytes   bytes    secs.    10^6bits/sec  
+
+ 87380  16384    300    30.03     828.71   
+TCP_STREAM to 192.168.0.100 packet payload size 30
+TCP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.0.100 (192.168.0.100) port 0 AF_INET : nodelay : demo
+Recv   Send    Send                          
+Socket Socket  Message  Elapsed              
+Size   Size    Size     Time     Throughput  
+bytes  bytes   bytes    secs.    10^6bits/sec  
+
+ 87380  16384     30    30.00     149.13   

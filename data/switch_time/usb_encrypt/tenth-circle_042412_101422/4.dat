@@ -1,0 +1,315 @@
+/home/adunn/privos-code/host/qemu-kvm-0.15.1/x86_64-softmmu/qemu-system-x86_64 -m 2048 -net nic,model=virtio -net user,net=10.0.0.0/8,dhcpstart=10.0.0.1 -redir tcp:8080:10.0.0.1:80 -redir tcp:2222:10.0.0.1:22 --snapshot -serial tcp::4444,server,nowait /home/adunn/privos-code/../ubuntu-11.10-desktop-amd64.img -priv-input type=usb-kbd,bus_num=1.3,toggler,encrypt -priv-input type=usb-mouse,bus_num=2.3,encrypt -priv-switch-bench
+setup_exit_notifier
+Using a nonsense rng (outputs 0x01 bytes always)
+do_kex: process_msg: rc 1
+kern_send_kex_msg: kern_fd 5 in_size 266
+do_kex: backend kex: rc 1
+do_kex: process_msg: rc 0
+usb_crypt_setup: crypt_ctx_id_path is /sys/bus/usb/devices/1-1.1:1.0/ep_81/crypt_ctx_id
+priv_set_kbd_enabled: 1
+Using a nonsense rng (outputs 0x01 bytes always)
+do_kex: process_msg: rc 1
+kern_send_kex_msg: kern_fd 6 in_size 266
+do_kex: backend kex: rc 1
+do_kex: process_msg: rc 0
+usb_crypt_setup: crypt_ctx_id_path is /sys/bus/usb/devices/2-1.1:1.0/ep_81/crypt_ctx_id
+priv_set_mouse_enabled: 1
+priv_connect_all
+husb: opened /sys/bus/usb/devices
+priv_connect_all start: 6749489108114
+husb: auto open: bus_num 2 addr 3
+husb: open device 2.3
+husb: opened /dev/bus/usb/002/003
+=== begin dumping device descriptor data ===
+12 01 10 01 00 00 00 08 3c 41 00 32 10 29 01 02 00 01 09 02 22 00 01 01 00 a0 19 09 04 00 00 01 03 01 02 00 09 21 10 01 00 01 22 44 00 07 05 81 03 04 00 0a 
+=== end dumping device descriptor data ===
+husb: claiming interfaces. config -1
+husb: i is 18, descr_len is 52, dl 9, dt 2
+husb: config #1 need -1
+husb: 1 interfaces claimed for configuration 1
+husb: grabbed usb device 2.3
+usb_dev_connect: add succeeded (2.3)
+husb: auto open: bus_num 1 addr 3
+husb: open device 1.3
+husb: opened /dev/bus/usb/001/003
+=== begin dumping device descriptor data ===
+12 01 10 01 00 00 00 08 18 05 01 00 00 01 01 02 00 01 09 02 3b 00 02 01 00 a0 32 09 04 00 00 01 03 01 01 00 09 21 10 01 00 01 22 41 00 07 05 81 03 08 00 0a 09 04 01 00 01 03 01 02 00 09 21 10 01 00 01 22 4b 00 07 05 82 03 04 00 0a 
+=== end dumping device descriptor data ===
+husb: claiming interfaces. config -1
+husb: i is 18, descr_len is 77, dl 9, dt 2
+husb: config #1 need -1
+husb: 2 interfaces claimed for configuration 1
+husb: grabbed usb device 1.3
+usb_dev_connect: add succeeded (1.3)
+usb_kbd_connect: making '1.3' a toggler
+priv_connect_all end: 6752178585417
+husb: reset device 2.3
+husb: claiming interfaces. config 1
+husb: i is 18, descr_len is 52, dl 9, dt 2
+husb: config #1 need 1
+husb: 1 interfaces claimed for configuration 1
+husb: ctrl type 0x80 req 0x6 val 0x100 index 0 len 64
+husb: submit ctrl. len 72 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 18
+husb: reset device 2.3
+husb: claiming interfaces. config 1
+husb: i is 18, descr_len is 52, dl 9, dt 2
+husb: config #1 need 1
+husb: 1 interfaces claimed for configuration 1
+husb: ctrl type 0x0 req 0x5 val 0x2 index 0 len 0
+husb: ctrl set addr 2
+husb: ctrl type 0x80 req 0x6 val 0x100 index 0 len 18
+husb: submit ctrl. len 26 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 18
+husb: ctrl type 0x80 req 0x6 val 0x200 index 0 len 9
+husb: submit ctrl. len 17 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 9
+husb: ctrl type 0x80 req 0x6 val 0x200 index 0 len 34
+husb: submit ctrl. len 42 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 34
+husb: ctrl type 0x80 req 0x6 val 0x300 index 0 len 255
+husb: submit ctrl. len 263 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+husb: ctrl type 0x80 req 0x6 val 0x302 index 1033 len 255
+husb: submit ctrl. len 263 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 30
+husb: ctrl type 0x80 req 0x6 val 0x301 index 1033 len 255
+husb: submit ctrl. len 263 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 10
+husb: ctrl type 0x0 req 0x9 val 0x1 index 0 len 0
+husb: releasing interfaces
+husb: ctrl set config 1 ret 0 errno 11
+husb: claiming interfaces. config 1
+husb: i is 18, descr_len is 52, dl 9, dt 2
+husb: config #1 need 1
+husb: 1 interfaces claimed for configuration 1
+husb: ctrl type 0x21 req 0xa val 0x0 index 0 len 0
+husb: submit ctrl. len 8 aurb 0x23839a0
+husb: async completed. aurb 0x23839a0 status 0 alen 0
+husb: ctrl type 0x81 req 0x6 val 0x2200 index 0 len 68
+husb: submit ctrl. len 76 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 68
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+8f 69 1f 2e 
+priv_input_bench_trigger debug: 2
+8f 69 1f 2e 
+->
+03 00 00 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+1b 14 d7 ba 
+priv_input_bench_trigger debug: 2
+1b 14 d7 ba 
+->
+00 fe 25 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+96 36 5e cf 
+priv_input_bench_trigger debug: 2
+96 36 5e cf 
+->
+01 00 00 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+dc 1e bc e5 
+priv_input_bench_trigger debug: 2
+dc 1e bc e5 
+->
+03 00 00 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+1a d8 dd a2 
+priv_input_bench_trigger debug: 2
+1a d8 dd a2 
+->
+00 00 00 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: reset device 1.3
+husb: claiming interfaces. config 1
+husb: i is 18, descr_len is 77, dl 9, dt 2
+husb: config #1 need 1
+husb: 2 interfaces claimed for configuration 1
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+23 27 1d 5a 
+priv_input_bench_trigger debug: 2
+23 27 1d 5a 
+->
+01 00 00 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+34 2a e6 7a 
+priv_input_bench_trigger debug: 2
+34 2a e6 7a 
+->
+03 00 00 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+c0 e0 e0 88 
+priv_input_bench_trigger debug: 2
+c0 e0 e0 88 
+->
+00 f0 2b 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+1e 87 59 81 
+priv_input_bench_trigger debug: 2
+1e 87 59 81 
+->
+00 00 ff 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+00 f7 0f 27 
+priv_input_bench_trigger debug: 2
+00 f7 0f 27 
+->
+00 00 01 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+13 01 5b 6b 
+priv_input_bench_trigger debug: 2
+13 01 5b 6b 
+->
+02 00 00 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+21 e9 6f 74 
+priv_input_bench_trigger debug: 2
+21 e9 6f 74 
+->
+03 fe 0f 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: ctrl type 0x80 req 0x6 val 0x100 index 0 len 64
+husb: submit ctrl. len 72 aurb 0x23839a0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+28 ed 55 03 
+priv_input_bench_trigger debug: 2
+28 ed 55 03 
+->
+03 fc 22 00 
+husb: async completed. aurb 0x23839a0 status 0 alen 18
+husb: reset device 1.3
+husb: claiming interfaces. config 1
+husb: i is 18, descr_len is 77, dl 9, dt 2
+husb: config #1 need 1
+husb: 2 interfaces claimed for configuration 1
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+8b b9 d6 dc 
+priv_input_bench_trigger debug: 2
+8b b9 d6 dc 
+->
+02 f7 25 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+75 5e 38 89 
+priv_input_bench_trigger debug: 2
+75 5e 38 89 
+->
+01 80 7f 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+cc 06 29 1c 
+priv_input_bench_trigger debug: 2
+cc 06 29 1c 
+->
+00 00 00 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: ctrl type 0x0 req 0x5 val 0x3 index 0 len 0
+husb: ctrl set addr 3
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+d1 4d 2a 73 
+priv_input_bench_trigger debug: 2
+d1 4d 2a 73 
+->
+01 00 00 00 
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+55 ae 21 aa 
+priv_input_bench_trigger debug: 2
+55 ae 21 aa 
+->
+03 00 01 00 
+husb: ctrl type 0x80 req 0x6 val 0x100 index 0 len 18
+husb: submit ctrl. len 26 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 18
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: ctrl type 0x80 req 0x6 val 0x200 index 0 len 9
+husb: submit ctrl. len 17 aurb 0x23839a0
+husb: async completed. aurb 0x23839a0 status 0 alen 9
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+f2 75 7a 93 
+priv_input_bench_trigger debug: 2
+f2 75 7a 93 
+->
+03 00 02 00 
+husb: ctrl type 0x80 req 0x6 val 0x200 index 0 len 59
+husb: submit ctrl. len 67 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 59
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: ctrl type 0x80 req 0x6 val 0x300 index 0 len 255
+husb: submit ctrl. len 263 aurb 0x23839a0
+husb: async completed. aurb 0x23839a0 status 0 alen 4
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+67 37 7e 78 
+priv_input_bench_trigger debug: 2
+67 37 7e 78 
+->
+03 ff 06 00 
+husb: ctrl type 0x80 req 0x6 val 0x302 index 1033 len 255
+husb: submit ctrl. len 263 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 46
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: ctrl type 0x80 req 0x6 val 0x301 index 1033 len 255
+husb: submit ctrl. len 263 aurb 0x23839a0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+11 f0 4e ea 
+priv_input_bench_trigger debug: 2
+11 f0 4e ea 
+->
+03 fe 07 00 
+husb: async completed. aurb 0x23839a0 status 0 alen 52
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: ctrl type 0x0 req 0x9 val 0x1 index 0 len 0
+husb: releasing interfaces
+husb: ctrl set config 1 ret 0 errno 11
+husb: claiming interfaces. config 1
+husb: i is 18, descr_len is 77, dl 9, dt 2
+husb: config #1 need 1
+husb: 2 interfaces claimed for configuration 1
+husb: ctrl type 0x21 req 0xa val 0x0 index 0 len 0
+husb: submit ctrl. len 8 aurb 0x23839a0
+husb: async completed. aurb 0x23839a0 status 0 alen 0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+04 b8 3e 7c 
+priv_input_bench_trigger debug: 2
+04 b8 3e 7c 
+->
+03 00 04 00 
+husb: ctrl type 0x81 req 0x6 val 0x2200 index 0 len 65
+husb: submit ctrl. len 73 aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 65
+husb: data submit: ep 0x81, len 4, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: async completed. aurb 0x185e0e0 status 0 alen 4
+b7 9d 12 55 
+priv_input_bench_trigger debug: 2
+b7 9d 12 55 
+->
+00 00 00 00 
+husb: data submit: ep 0x81, len 8, more 0, packet 0x185d890, aurb 0x185e0e0
+husb: ctrl type 0x21 req 0x9 val 0x200 index 0 len 1
+husb: submit ctrl. len 9 aurb 0x23839a0
+husb: async completed. aurb 0x23839a0 status 0 alen 1
+husb: ctrl type 0x21 req 0xa val 0x0 index 1 len 0
+husb: submit ctrl. len 8 aurb 0x23839a0
+husb: async completed. aurb 0x23839a0 status 0 alen 0
+husb: ctrl type 0x81 req 0x6 val 0x2200 index 1 len 75
+husb: submit ctrl. len 83 aurb 0x23839a0
+husb: async completed. aurb 0x23839a0 status 0 alen 75
+husb: data submit: ep 0x81, len 4, more 0, packet 0x2383150, aurb 0x23839a0
+husb: data submit: ep 0x82, len 4, more 0, packet 0x24443e0, aurb 0x2383b90
+husb: async completed. aurb 0x185e0e0 status 0 alen 8
+b2 d9 63 98 30 40 9b 8b 
+priv_input_bench_trigger debug: 1
+priv_input_bench_trigger: 6766280443132
+priv_free_all

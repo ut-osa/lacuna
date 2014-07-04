@@ -1,0 +1,14 @@
+1. xserver: 1.10.6. Put exa_*.c file in exa dir
+2. run xserver, e.g.
+
+LD_LIBRARY_PATH=/opt/xorg/lib ./X -config /root/xorg.conf.new   -modulepath /opt/xorg/lib/xorg/modules -logverbose 10 -verbose 10 -ignoreABI :1 -ac 2>&1 
+
+3. invoke twm and whatever other application, wathc for 1600x1200 memory allocation address - that's the backing store
+4. move the window
+5. close the application
+6. run dd, e.g.
+dd skip=139966065795088 count=7680000 bs=1 if=/proc/11391/mem of=/tmp/test_out
+7. ignore the error "cannot skip" message. 
+8. compile show_bitmap with SDL. invoke the program with the image in stdin
+
+

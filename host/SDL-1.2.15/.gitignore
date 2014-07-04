@@ -1,0 +1,9 @@
+/Makefile
+/build-deps
+/build
+/config.log
+/config.status
+/include/SDL_config.h
+/libtool
+/sdl-config
+/sdl.pc

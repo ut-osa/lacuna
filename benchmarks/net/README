@@ -1,0 +1,3 @@
+All the scripts can be run without parameters. You can redirect the output to a log file.
+
+Most tests are run on the guest, except testing TCP_STREAM receiving, which should be run on the gateway.

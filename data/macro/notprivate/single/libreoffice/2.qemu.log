@@ -1,0 +1,10 @@
+/var/local/sangmank/privos/host/qemu-kvm-0.15.1/x86_64-softmmu/qemu-system-x86_64 -m 2048 -net nic,model=virtio -net user,net=10.0.0.0/8,dhcpstart=10.0.0.1 -redir tcp:8080:10.0.0.1:80 -redir tcp:2222:10.0.0.1:22 --snapshot /var/local/sangmank/privos/diff_base.img
+Disable ENCRYPTION with NO_ENCRYPT
+GPU encryption disabled because of the env. variable
+resizing to 640 480
+resizing to 720 400
+resizing to 800 599
+resizing to 1024 768
+Disable ENCRYPTION with NO_ENCRYPT
+GPU encryption disabled because of the env. variable
+utils/kvm_linux: line 215:  6018 Killed                  ${CMD}

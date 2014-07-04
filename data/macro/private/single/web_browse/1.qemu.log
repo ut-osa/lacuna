@@ -1,0 +1,54 @@
+/var/local/sangmank/privos/host/qemu-kvm-0.15.1/x86_64-softmmu/qemu-system-x86_64 -m 2048 -net nic,model=virtio,encrypt,macaddr=52:54:68:4F:03:6F -net user,net=10.0.0.0/8,dhcpstart=10.0.0.1 -redir tcp:8080:10.0.0.1:80 -redir tcp:2222:10.0.0.1:22 --snapshot /var/local/sangmank/privos/diff_base.img -priv-sound -priv-diff
+Using a nonsense rng (outputs 0x01 bytes always)
+do_kex: process_msg: rc 1
+kern_send_kex_msg: kern_fd 9 in_size 266
+do_kex: backend kex: rc 1
+do_kex: process_msg: rc 0
+Using a nonsense rng (outputs 0x01 bytes always)
+do_kex: process_msg: rc 1
+kern_send_kex_msg: kern_fd 10 in_size 266
+do_kex: backend kex: rc 1
+do_kex: process_msg: rc 0
+#### PRIVATE DIFF MODE ENABLED! ####
+#### PRIVATE DIFF MODE ENABLED! ####
+Disable ENCRYPTION with NO_ENCRYPT
+Disable GL+ENCRYPTION with DISABLE_GPU_ENC
+ui/sdl.c:139,gpu_set_gl_properties is ignored because the screen width is not 1024
+resizing to 640 480
+resizing to 720 400
+resizing to 800 599
+resizing to 1024 768
+Disable ENCRYPTION with NO_ENCRYPT
+Disable GL+ENCRYPTION with DISABLE_GPU_ENC
+Allocating host and CUDA memory and loading image file...
+Loading extensions: No error
+Creating GL texture 1024x768...
+Texture created.
+Creating PBO...
+PBO created.
+encryption inited,buffer created
+GPU thread Initialized
+Avg_fps=44.352, time_per_frame=22547.000us, gpu=20793.000us, cpu=1743.000us 
+Avg_fps=64.814, time_per_frame=14780.000us, gpu=13178.000us, cpu=1591.000us 
+Avg_fps=66.097, time_per_frame=14896.000us, gpu=13277.000us, cpu=1608.000us 
+Avg_fps=65.825, time_per_frame=15270.000us, gpu=13230.000us, cpu=2029.000us 
+Avg_fps=65.547, time_per_frame=15129.000us, gpu=13518.000us, cpu=1600.000us 
+Avg_fps=65.603, time_per_frame=14847.000us, gpu=13234.000us, cpu=1602.000us 
+Avg_fps=65.147, time_per_frame=14780.000us, gpu=13171.000us, cpu=1598.000us 
+Avg_fps=65.374, time_per_frame=14741.000us, gpu=13126.000us, cpu=1604.000us 
+Avg_fps=65.339, time_per_frame=14743.000us, gpu=13137.000us, cpu=1595.000us 
+Avg_fps=65.250, time_per_frame=14840.000us, gpu=13195.000us, cpu=1634.000us 
+Avg_fps=65.233, time_per_frame=15698.000us, gpu=13813.000us, cpu=1874.000us 
+Avg_fps=65.321, time_per_frame=15436.000us, gpu=13757.000us, cpu=1668.000us 
+Avg_fps=65.462, time_per_frame=15017.000us, gpu=13249.000us, cpu=1757.000us 
+Avg_fps=65.590, time_per_frame=14779.000us, gpu=13165.000us, cpu=1603.000us 
+Avg_fps=65.457, time_per_frame=14845.000us, gpu=13186.000us, cpu=1647.000us 
+Avg_fps=65.482, time_per_frame=14722.000us, gpu=13118.000us, cpu=1593.000us 
+Avg_fps=65.588, time_per_frame=14833.000us, gpu=13211.000us, cpu=1611.000us 
+Avg_fps=65.609, time_per_frame=15173.000us, gpu=13502.000us, cpu=1660.000us 
+Avg_fps=65.646, time_per_frame=14945.000us, gpu=13243.000us, cpu=1691.000us 
+Avg_fps=65.671, time_per_frame=14806.000us, gpu=13194.000us, cpu=1601.000us 
+Avg_fps=65.540, time_per_frame=16061.000us, gpu=14040.000us, cpu=2010.000us 
+Avg_fps=65.402, time_per_frame=15846.000us, gpu=14169.000us, cpu=1666.000us 
+Avg_fps=65.433, time_per_frame=14775.000us, gpu=13174.000us, cpu=1590.000us 
+utils/kvm_linux: line 215:  6070 Killed                  ${CMD}

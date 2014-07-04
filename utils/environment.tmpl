@@ -1,0 +1,21 @@
+IMAGE_NAME=${NAME:-base.img}
+UTILS_DIR=$(dirname $(readlink -f $0))
+
+BASE_DIR=$(readlink -f ${UTILS_DIR}/..)
+QEMU_DIR=$(readlink -f ${BASE_DIR}/host/qemu-kvm-0.15.1)
+
+# environment for connecting the hd
+VM_DISK=/mnt/vm1
+
+NBD_DEVICE=/dev/nbd0
+IMAGE=${BASE_DIR}/${IMAGE_NAME}
+QEMU_NBD=${QEMU_DIR}/qemu-nbd
+
+KERNEL_DIR=$(readlink -f ${BASE_DIR}/host/kbuild)
+CUR_DIR=$(pwd)
+
+# You have to set these yourself...
+USB_KBD=
+USB_MOUSE=
+USB_KBD_PCI_DEV=00:1a.0
+USB_MOUSE_PCI_DEV=00:1d.0

@@ -1,0 +1,77 @@
+/home/adunn/privos-code/host/qemu-kvm-0.15.1/x86_64-softmmu/qemu-system-x86_64 -m 2048 -net nic,model=virtio -net user,net=10.0.0.0/8,dhcpstart=10.0.0.1 -redir tcp:8080:10.0.0.1:80 -redir tcp:2222:10.0.0.1:22 --snapshot -serial tcp::4444,server,nowait /home/adunn/privos-code/../ubuntu-11.10-desktop-amd64.img -priv-input type=usb-kbd,bus_num=1.6,toggler -priv-switch-bench
+priv_connect_all start: 130368967101430
+husb: opened /sys/bus/usb/devices
+husb: auto open: bus_num 1 addr 6
+husb: open device 1.6
+husb: opened /dev/bus/usb/001/006
+=== begin dumping device descriptor data ===
+12 01 10 01 00 00 00 08 18 05 01 00 00 01 01 02 00 01 09 02 3b 00 02 01 00 a0 32 09 04 00 00 01 03 01 01 00 09 21 10 01 00 01 22 41 00 07 05 81 03 08 00 0a 09 04 01 00 01 03 01 02 00 09 21 10 01 00 01 22 4b 00 07 05 82 03 04 00 0a 
+=== end dumping device descriptor data ===
+husb: claiming interfaces. config -1
+husb: i is 18, descr_len is 77, dl 9, dt 2
+husb: config #1 need -1
+husb: 2 interfaces claimed for configuration 1
+husb: grabbed usb device 1.6
+usb_dev_connect: add succeeded (1.6)
+usb_kbd_connect: making '1.6' a toggler
+priv_connect_all end: 130370074771609
+husb: reset device 1.6
+husb: claiming interfaces. config 1
+husb: i is 18, descr_len is 77, dl 9, dt 2
+husb: config #1 need 1
+husb: 2 interfaces claimed for configuration 1
+husb: ctrl type 0x80 req 0x6 val 0x100 index 0 len 64
+husb: submit ctrl. len 72 aurb 0x1e91450
+husb: async completed. aurb 0x1e91450 status 0 alen 18
+husb: reset device 1.6
+husb: claiming interfaces. config 1
+husb: i is 18, descr_len is 77, dl 9, dt 2
+husb: config #1 need 1
+husb: 2 interfaces claimed for configuration 1
+husb: ctrl type 0x0 req 0x5 val 0x2 index 0 len 0
+husb: ctrl set addr 2
+husb: ctrl type 0x80 req 0x6 val 0x100 index 0 len 18
+husb: submit ctrl. len 26 aurb 0x1e91450
+husb: async completed. aurb 0x1e91450 status 0 alen 18
+husb: ctrl type 0x80 req 0x6 val 0x200 index 0 len 9
+husb: submit ctrl. len 17 aurb 0x1e91450
+husb: async completed. aurb 0x1e91450 status 0 alen 9
+husb: ctrl type 0x80 req 0x6 val 0x200 index 0 len 59
+husb: submit ctrl. len 67 aurb 0x1e91450
+husb: async completed. aurb 0x1e91450 status 0 alen 59
+husb: ctrl type 0x80 req 0x6 val 0x300 index 0 len 255
+husb: submit ctrl. len 263 aurb 0x1e91450
+husb: async completed. aurb 0x1e91450 status 0 alen 4
+husb: ctrl type 0x80 req 0x6 val 0x302 index 1033 len 255
+husb: submit ctrl. len 263 aurb 0x1e91450
+husb: async completed. aurb 0x1e91450 status 0 alen 46
+husb: ctrl type 0x80 req 0x6 val 0x301 index 1033 len 255
+husb: submit ctrl. len 263 aurb 0x1e91450
+husb: async completed. aurb 0x1e91450 status 0 alen 52
+husb: ctrl type 0x0 req 0x9 val 0x1 index 0 len 0
+husb: releasing interfaces
+husb: ctrl set config 1 ret 0 errno 11
+husb: claiming interfaces. config 1
+husb: i is 18, descr_len is 77, dl 9, dt 2
+husb: config #1 need 1
+husb: 2 interfaces claimed for configuration 1
+husb: ctrl type 0x21 req 0xa val 0x0 index 0 len 0
+husb: submit ctrl. len 8 aurb 0x1e91450
+husb: async completed. aurb 0x1e91450 status 0 alen 0
+husb: ctrl type 0x81 req 0x6 val 0x2200 index 0 len 65
+husb: submit ctrl. len 73 aurb 0x1e91450
+husb: async completed. aurb 0x1e91450 status 0 alen 65
+husb: data submit: ep 0x81, len 8, more 0, packet 0x1e90c00, aurb 0x1e91450
+husb: ctrl type 0x21 req 0x9 val 0x200 index 0 len 1
+husb: submit ctrl. len 9 aurb 0x1e91640
+husb: async completed. aurb 0x1e91640 status 0 alen 1
+husb: ctrl type 0x21 req 0xa val 0x0 index 1 len 0
+husb: submit ctrl. len 8 aurb 0x1e91640
+husb: async completed. aurb 0x1e91640 status 0 alen 0
+husb: ctrl type 0x81 req 0x6 val 0x2200 index 1 len 75
+husb: submit ctrl. len 83 aurb 0x1e91640
+husb: async completed. aurb 0x1e91640 status 0 alen 75
+husb: data submit: ep 0x82, len 4, more 0, packet 0x29b6ec0, aurb 0x1e91640
+husb: async completed. aurb 0x1e91450 status 0 alen 8
+00 00 0d 00 00 00 00 00 
+priv_input_bench_trigger: 130375915077924

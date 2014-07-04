@@ -1,0 +1,20 @@
+One sector is 512 bytes.  A cluster is by default 64k (see
+block/qcow2.h).
+
+First cluster (cluster index 0) contains QCOW2 header information, its
+extension, and backing file name. Second cluster usually contains a
+refcount table. Other clusters contain a L1 table, L2 tables, refcount
+table, refcount blocks, data, etc.
+
+Except the first cluster (header) and L1 table clusters, all the other
+clusters are encrypted. The header and L1 table are not encrypted
+because they are just never sync'ed with the disk.
+
+Currently, encryption is done for with AES CBC mode, in sector-size
+chunks for data and cluster-size chunks for metadata. The AES IV is
+set to either the offset of each cluster (metadata) or the sector
+number filled with 1 in higher 64 bit (data). The one exception to
+these encryption granularities is refcount table that is encrypted in
+one chunk with a single IV formed like the metadata IVs (it is also
+based on a file offset that is exclusive with the rest of the cluster
+offsets since they too are in the diffs file).

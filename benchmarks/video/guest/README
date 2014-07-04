@@ -1,0 +1,3 @@
+This directory has files for the guest for this benchmark (to cause
+the guest to automatically run something).  You'll probably need to
+link .xsessionrc to .xinitrc .

@@ -1,0 +1,79 @@
+/var/local/sangmank/privos/host/qemu-kvm-0.15.1/x86_64-softmmu/qemu-system-x86_64 -m 2048 -net nic,model=virtio,encrypt,macaddr=52:54:F0:46:24:F4 -net tap,script=/var/local/sangmank/privos/utils/qemu-ifup.sh,downscript=/var/local/sangmank/privos/utils/qemu-ifdown.sh -priv-net-num 0 --snapshot -soundhw hda /var/local/sangmank/privos/diff_base.img -priv-sound -priv-diff
+Using a nonsense rng (outputs 0x01 bytes always)
+do_kex: process_msg: rc 1
+kern_send_kex_msg: kern_fd 9 in_size 266
+do_kex: backend kex: rc 1
+do_kex: process_msg: rc 0
+Using a nonsense rng (outputs 0x01 bytes always)
+do_kex: process_msg: rc 1
+kern_send_kex_msg: kern_fd 10 in_size 266
+do_kex: backend kex: rc 1
+do_kex: process_msg: rc 0
+#### PRIVATE DIFF MODE ENABLED! ####
+#### PRIVATE DIFF MODE ENABLED! ####
+Using a nonsense rng (outputs 0x01 bytes always)
+do_kex: process_msg: rc 1
+kern_send_kex_msg: kern_fd 18 in_size 266
+do_kex: backend kex: rc 1
+do_kex: process_msg: rc 0
+Using a nonsense rng (outputs 0x01 bytes always)
+do_kex: process_msg: rc 1
+kern_send_kex_msg: kern_fd 19 in_size 266
+do_kex: backend kex: rc 1
+do_kex: process_msg: rc 0
+Disable ENCRYPTION with NO_ENCRYPT
+Disable GL+ENCRYPTION with DISABLE_GPU_ENC
+ui/sdl.c:139,gpu_set_gl_properties is ignored because the screen width is not 1024
+resizing to 640 480
+resizing to 720 400
+resizing to 800 599
+resizing to 1024 768
+Disable ENCRYPTION with NO_ENCRYPT
+Disable GL+ENCRYPTION with DISABLE_GPU_ENC
+Allocating host and CUDA memory and loading image file...
+Loading extensions: No error
+Creating GL texture 1024x768...
+Texture created.
+Creating PBO...
+PBO created.
+encryption inited,buffer created
+GPU thread Initialized
+Avg_fps=42.697, time_per_frame=23421.000us, gpu=21800.000us, cpu=1609.000us 
+Avg_fps=56.383, time_per_frame=15085.000us, gpu=13345.000us, cpu=1729.000us 
+Avg_fps=57.977, time_per_frame=14786.000us, gpu=13193.000us, cpu=1582.000us 
+Avg_fps=60.215, time_per_frame=14773.000us, gpu=13129.000us, cpu=1633.000us 
+Avg_fps=61.445, time_per_frame=14803.000us, gpu=13207.000us, cpu=1585.000us 
+Avg_fps=62.259, time_per_frame=14983.000us, gpu=13113.000us, cpu=1859.000us 
+Avg_fps=62.898, time_per_frame=14780.000us, gpu=13169.000us, cpu=1600.000us 
+Avg_fps=63.001, time_per_frame=15079.000us, gpu=13460.000us, cpu=1608.000us 
+Avg_fps=63.104, time_per_frame=15144.000us, gpu=13118.000us, cpu=2015.000us 
+Avg_fps=63.118, time_per_frame=14680.000us, gpu=13083.000us, cpu=1586.000us 
+Avg_fps=63.300, time_per_frame=14690.000us, gpu=13091.000us, cpu=1588.000us 
+Avg_fps=63.594, time_per_frame=14699.000us, gpu=13103.000us, cpu=1585.000us 
+Avg_fps=63.849, time_per_frame=15038.000us, gpu=13291.000us, cpu=1736.000us 
+Avg_fps=63.966, time_per_frame=14867.000us, gpu=13269.000us, cpu=1587.000us 
+Avg_fps=64.103, time_per_frame=15137.000us, gpu=13514.000us, cpu=1612.000us 
+Avg_fps=64.116, time_per_frame=14880.000us, gpu=13070.000us, cpu=1799.000us 
+Avg_fps=64.215, time_per_frame=14718.000us, gpu=13108.000us, cpu=1598.000us 
+Avg_fps=64.281, time_per_frame=14750.000us, gpu=13154.000us, cpu=1584.000us 
+Avg_fps=64.419, time_per_frame=14764.000us, gpu=13153.000us, cpu=1600.000us 
+Avg_fps=64.426, time_per_frame=14982.000us, gpu=13126.000us, cpu=1844.000us 
+Avg_fps=64.439, time_per_frame=15929.000us, gpu=14312.000us, cpu=1606.000us 
+Avg_fps=64.379, time_per_frame=17423.000us, gpu=15766.000us, cpu=1646.000us 
+Avg_fps=64.433, time_per_frame=14658.000us, gpu=13059.000us, cpu=1588.000us 
+Avg_fps=64.454, time_per_frame=14763.000us, gpu=13169.000us, cpu=1583.000us 
+Avg_fps=64.454, time_per_frame=14654.000us, gpu=13060.000us, cpu=1583.000us 
+Avg_fps=64.534, time_per_frame=15271.000us, gpu=13677.000us, cpu=1583.000us 
+Avg_fps=64.552, time_per_frame=15900.000us, gpu=14289.000us, cpu=1599.000us 
+Avg_fps=64.606, time_per_frame=14805.000us, gpu=13209.000us, cpu=1585.000us 
+Avg_fps=64.627, time_per_frame=14770.000us, gpu=13123.000us, cpu=1636.000us 
+Avg_fps=64.566, time_per_frame=20021.000us, gpu=18409.000us, cpu=1600.000us 
+Avg_fps=64.433, time_per_frame=14740.000us, gpu=13129.000us, cpu=1600.000us 
+Avg_fps=64.243, time_per_frame=15016.000us, gpu=13308.000us, cpu=1697.000us 
+Avg_fps=64.070, time_per_frame=15080.000us, gpu=13222.000us, cpu=1847.000us 
+Avg_fps=63.951, time_per_frame=20067.000us, gpu=18467.000us, cpu=1589.000us 
+Avg_fps=63.704, time_per_frame=14731.000us, gpu=13139.000us, cpu=1581.000us 
+Avg_fps=63.735, time_per_frame=27693.000us, gpu=26072.000us, cpu=1610.000us 
+Avg_fps=63.796, time_per_frame=15124.000us, gpu=13111.000us, cpu=2002.000us 
+Avg_fps=63.815, time_per_frame=15497.000us, gpu=13744.000us, cpu=1742.000us 
+utils/kvm_linux: line 215:  3160 Killed                  ${CMD}
